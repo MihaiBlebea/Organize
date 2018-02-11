@@ -1,14 +1,17 @@
 <?php
 
-namespace SerbanBlebea\Organize;
+namespace SerbanBlebea\Organize\Example;
 
-use SerbanBlebea\Organize\Migrator;
-use SerbanBlebea\Organize\MigratorInterface;
-use SerbanBlebea\Organize\Column;
+use SerbanBlebea\Organize\Migrate\Migrator;
+use SerbanBlebea\Organize\Interfaces\MigratorInterface;
+use SerbanBlebea\Organize\Migrate\Column;
 
 class ShopMigrator extends Migrator implements MigratorInterface
 {
-    public $tableName = "shops";
+    public function getTableName()
+    {
+        return "shops";
+    }
 
     public function migrate()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SerbanBlebea\Organize;
+namespace SerbanBlebea\Organize\Migrate;
 
 class Constraint
 {

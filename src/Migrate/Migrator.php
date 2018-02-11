@@ -1,12 +1,12 @@
 <?php
 
-namespace SerbanBlebea\Organize;
+namespace SerbanBlebea\Organize\Migrate;
 
-use Framework\Database\Connector;
-use Framework\Injectables\Injector;
-use SerbanBlebea\Organize\Column;
+use SerbanBlebea\Organize\Connector\Connector;
+use SerbanBlebea\Organize\Organize;
+use SerbanBlebea\Organize\Migrate\Column;
 
-class Migrator
+class Migrator extends Organize
 {
     private $connector = null;
 
@@ -16,10 +16,9 @@ class Migrator
 
     private $columns = [];
 
-
     public function __construct()
     {
-        $conn = Injector::resolve("Connector");
+        $conn = parent::$connector;
         $this->connector = $conn->getConnector();
     }
 
@@ -97,11 +96,6 @@ class Migrator
         return $this;
     }
 
-    public function getTableName()
-    {
-        return $this->tableName;
-    }
-
     function runMigration()
     {
         try {
@@ -111,12 +105,11 @@ class Migrator
         } catch(PDOException $e) {
             dd($e);
         }
-        dd($result);
     }
 
     function dropTable()
     {
-        $this->schema = "DROP TABLE " . $this->tableName;
+        $this->schema = "DROP TABLE " . $this->getTableName();
         $this->runMigration();
     }
 }
