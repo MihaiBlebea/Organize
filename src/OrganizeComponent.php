@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Database;
+namespace SerbanBlebea\Organize;
 
 use Framework\Injectables\Injector;
 use Framework\Interfaces\ComponentInterface;
-use App\Database\Organize;
-use App\Database\Connector\Connector;
+use SerbanBlebea\Organize\Organize;
+use SerbanBlebea\Organize\Connector\Connector;
 use Framework\Configs\Config;
 
 class OrganizeComponent extends Injector implements ComponentInterface
@@ -19,12 +19,13 @@ class OrganizeComponent extends Injector implements ComponentInterface
                                        $config["connect"]["database"],
                                        $config["connect"]["username"],
                                        $config["connect"]["password"]);
+
             $organize = new Organize($connector);
             $organize->setup([
                 "migrations" => [
-                    "App\Database\Example\AppMigrator",
-                    "App\Database\Example\ChildMigrator",
-                    "App\Database\Example\GradeMigrator"
+                    "SerbanBlebea\Organize\Example\AppMigrator",
+                    "SerbanBlebea\Organize\Example\ChildMigrator",
+                    "SerbanBlebea\Organize\Example\GradeMigrator"
                 ]
             ]);
             return $organize;

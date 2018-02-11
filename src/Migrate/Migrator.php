@@ -18,7 +18,7 @@ class Migrator extends Organize
 
     public function __construct()
     {
-        $conn = parent::$connector;
+        $conn = $this->getConnector();
         $this->connector = $conn->getConnector();
     }
 

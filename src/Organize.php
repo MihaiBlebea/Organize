@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Database;
+namespace SerbanBlebea\Organize;
 
-use App\Database\Connector\Connector;
-use App\Database\Migrate\Migrator;
+use SerbanBlebea\Organize\Connector\Connector;
+use SerbanBlebea\Organize\Migrate\Migrator;
+use SerbanBlebea\Organize\Factory\ConnectorFactory;
 
 class Organize
 {
-    private $connector = null;
+    private $connector;
 
     public $setup = [];
 
@@ -34,6 +35,11 @@ class Organize
                 array_push($this->migrations, $class);
             }
         }
+    }
+
+    public function getConnector()
+    {
+        return ($this->connector !== null) ? $this->connector : ConnectorFactory::build();
     }
 
     public function dispatchMigrations()

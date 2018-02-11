@@ -61,7 +61,7 @@ class Model extends Organize
      */
     public function __construct()
     {
-        $connector = parent::$connector;
+        $connector = $this->getConnector();
         $this->connector = $connector->getConnector();
     }
 
