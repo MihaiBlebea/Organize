@@ -1,7 +1,7 @@
 {
     "name": "serbanblebea/organize",
     "description": "This is a ORM package for migrating and using models in any PHP project",
-    "type": "composer-plugin",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
